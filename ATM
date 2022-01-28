@@ -1,0 +1,84 @@
+#include <stdio.h>
+float balance = 0; // intial balance is zero for all
+int anotherTransaction; 
+void transaction(){
+  int choice; 
+  int amountToDeposit; 
+  int amountToWithdraw; 
+  printf("Select any option to run !\n\n");
+  printf("1. Withdraw\n"); 
+  printf("2. Deposit\n"); 
+  printf("3. Balance\n");
+  scanf("%d",  &choice); 
+  
+  switch(choice){
+    case 1:
+    // 1st opt is withdraw
+    printf("Please enter amount to withdraw: "); 
+    scanf("%d", &amountToWithdraw); 
+    if(amountToWithdraw > balance){
+      printf("There is no insuffient funds in your account"); 
+      // another transac?
+      printf("\n\nDo you want another transaction?\nPress 1 to proceed and 2 to exit\n\n"); 
+      scanf("%d", &anotherTransaction); 
+      if(anotherTransaction == 1){
+        // calling transac funct
+        transaction();
+      }
+    } else {
+      // this means account has money withdraw and updating baln
+      balance = balance - amountToWithdraw; 
+      
+      printf("You have withdrawn %d and your new balance is %f ", amountToWithdraw, balance);
+      
+      // another transac?
+      printf("\n\nDo you want another transaction?\nPress 1 to proceed and 2 to exit\n\n"); 
+      scanf("%d", &anotherTransaction); 
+      if(anotherTransaction == 1){
+        // calling transac funct
+        transaction();
+      }
+      
+      
+    }
+    break; 
+    
+    case 2:
+    // DEPOSIT
+    printf("Please enter amount to deposit: "); 
+    scanf("%d", &amountToDeposit); 
+    // deposited money, update the balance amnt
+    
+    balance = amountToDeposit + balance; 
+    
+    printf("Thank you for depositing, new balance is: %f", balance); 
+    
+    // another Transaction?
+      printf("\n\nDo you want another transaction?\nPress 1 to proceed and 2 to exit\n\n"); 
+      scanf("%d", &anotherTransaction); 
+      if(anotherTransaction == 1){
+        // calling transac funct
+        transaction();
+      }
+    
+    break; 
+    
+    case 3:
+    
+    // BALANCE
+    printf("Your bank balance is: %f", balance); 
+    
+    // another Transaction?
+      printf("\n\nDo you want another transaction?\nPress 1 to proceed and 2 to exit\n\n"); 
+      scanf("%d", &anotherTransaction); 
+      if(anotherTransaction == 1){
+        // calling transac funct
+        transaction();
+      }
+    
+    break;
+      }
+  }
+int main(){
+        transaction();
+   return 0;}
